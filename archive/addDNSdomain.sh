@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the filename
-filename='domainLISTddns.sh'
+filename='/usr/local/bin/domainlist'
 
 # Type the text that you want to append
 read -p "Enter domain name:" domain
