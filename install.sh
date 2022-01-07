@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #Change permissions to execute
-sudo chmod 700 script/updateDNS.sh
-sudo chmod 700 script/domainlist
-sudo chmod 700 script/ddns-godaddy
+sudo chmod 777 script/updateDNS.sh
+sudo chmod 777 script/domainlist
+sudo chmod 777 script/ddns-godaddy
 
 #Move all files to correct placement
 sudo cp script/updateDNS.sh /usr/local/bin/updatedns
