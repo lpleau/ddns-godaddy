@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #Change permissions to execute
-sudo chmod 700 updateDNS.sh
-sudo chmod 700 domainlist
-sudo chmod 700 ddns-godaddy
+sudo chmod 700 script/updateDNS.sh
+sudo chmod 700 script/domainlist
+sudo chmod 700 script/ddns-godaddy
 
 #Move all files to correct placement
-sudo cp updateDNS.sh /usr/local/bin/updatedns
-sudo cp domainlist /usr/local/bin/domainlist
-sudo cp ddns-godaddy /usr/local/bin/ddns-godaddy
+sudo cp script/updateDNS.sh /usr/local/bin/updatedns
+sudo cp script/domainlist /usr/local/bin/domainlist
+sudo cp script/ddns-godaddy /usr/local/bin/ddns-godaddy
 
 #Install dependencies
 sudo apt install jq -y
@@ -18,7 +18,7 @@ ddns-godaddy
 
 #Create cron job to keep DDNS updated
 crontab -l > mycron
-echo "*/10 * * * * /usr/local/bin/domainlist" >> mycron
+echo "*/5 * * * * /usr/local/bin/domainlist" >> mycron
 crontab mycron
 rm mycron
 
