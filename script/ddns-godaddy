@@ -11,7 +11,7 @@ function addDNSdomain
     read -p "Enter API Key:" apikey
     read -p "Enter API Secret:" apisecret
     # Append the text by using '>>' symbol
-    echo updatedns $domain $host $apikey $apisecret >> $filename
+    echo /usr/local/bin/updatedns $domain $host $apikey $apisecret >> $filename
     
 }
 
