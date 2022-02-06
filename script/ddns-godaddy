@@ -11,8 +11,7 @@ function addDNSdomain
     read -p "Enter API Key:" apikey
     read -p "Enter API Secret:" apisecret
     # Append the text by using '>>' symbol
-    echo /usr/local/bin/ddns-godaddy/updatedns $domain $host $apikey $apisecret >> $filename
-    
+    echo /usr/local/bin/ddns-godaddy/updatedns $host $domain $apikey $apisecret >> $filename
 }
 
 function listDomains
@@ -20,14 +19,34 @@ function listDomains
     tail --line=+5 /usr/local/bin/ddns-godaddy/domainlist
 }
 
+function confAPI
+{   clear
+    #Define API file
+    APIfile='/usr/local/bin/ddns-godaddy/.domainAPI'
+
+    #Type the domain and API info you want to append
+    read -p "Enter domain name:" domain
+    read -p "Enter API Key:" apikey
+    read -p "Enter API Secret:" apisecret
+    #Append to API file
+    echo $domain $apikey $apisecret >> $APIfile
+}
+
+function listAPI
+{   clear
+    tail --line=+2 /usr/local/bin/ddns-godaddy/.domainAPI
+}
+
 function runddns-godaddy
 {   clear
-        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] View your current configured domains \n"
-        read -n1 -p "1 or 2: " runCommand
+        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] Configure new domain API (BETA) \n[3] View your current configured hosts \n[4] View your current domain APIs (BETA) \n"
+        read -n1 -p "1, 2, 3: " runCommand
 
         case $runCommand in
             1) clear && addDNSdomain;;
-            2) clear && listDomains;;
+            2) clear && confAPI;;
+            3) clear && listDomains;;
+            4) clear && listAPI;;
         esac
 }
 

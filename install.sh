@@ -10,13 +10,14 @@ sudo mkdir /usr/local/bin/ddns-godaddy
 sudo cp script/updateDNS /usr/local/bin/ddns-godaddy/updatedns
 sudo cp script/domainlist /usr/local/bin/ddns-godaddy/domainlist
 sudo cp script/ddns-godaddy /usr/local/bin/ddns-godaddy
+sudo cp script/.domainAPI /usr/local/bin/ddns-godaddy/.domainAPI
 
 #Install dependencies
 sudo apt install jq -y
 
 #Create cron job to keep DDNS updated
 crontab -l > mycron
-echo "*/5 * * * * /usr/local/bin/domainlist" >> mycron
+echo "*/5 * * * * /usr/local/bin//ddns-godaddy/domainlist" >> mycron
 crontab mycron
 rm mycron
 
