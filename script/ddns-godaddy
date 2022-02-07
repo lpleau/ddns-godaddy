@@ -1,17 +1,44 @@
 #!/bin/bash
 
 function addDNSdomain
-{   clear
-    # Define the filename
-    filename='/usr/local/bin/domainlist'
+{   function manual
+    {
+        clear
+        # Define the filename
+        filename='/usr/local/bin/ddns-godaddy/domainlist'
 
-    # Type the text that you want to append
-    read -p "Enter domain name:" domain
-    read -p "Enter host:" host
-    read -p "Enter API Key:" apikey
-    read -p "Enter API Secret:" apisecret
-    # Append the text by using '>>' symbol
-    echo /usr/local/bin/ddns-godaddy/updatedns $host $domain $apikey $apisecret >> $filename
+        # Type the text that you want to append
+        read -p "Enter domain name:" domain
+        read -p "Enter host:" host
+        read -p "Enter API Key:" apikey
+        read -p "Enter API Secret:" apisecret
+        # Append the text by using '>>' symbol
+        echo /usr/local/bin/ddns-godaddy/updatedns $host $domain $apikey $apisecret >> $filename
+    }
+    function auto
+    {
+        clear
+        # Define the filename
+        filename='/usr/local/bin/ddns-godaddy/domainlist'
+        echo -e "What domain/API do you wish to use?"
+        tail --line=+2 /usr/local/bin/ddns-godaddy/.domainAPI
+        read -p "Enter the # of the desired row: " domainNum
+        #Define API domain line
+        domainNumCor=(($domainNum + 1))
+        domainLine=sed -n $domainNumCor,$domainNumCor'p' /usr/local/bin/ddns-godaddy/.domainAPI
+        read -p "Enter host:" host
+        # Append the text by using '>>' symbol
+        echo /usr/local/bin/ddns-godaddy/updatedns $host $domainLine >> $filename
+    }
+    clear
+        echo -e "Do you wish to manually configure the domain API or use the existing config file?"
+        read -n1 -p "[m]Manually, [a]Use existing config file: " runCommand
+
+        case $runCommand in
+            m) clear && manual;;
+            a) clear && auto;;
+
+        esac
 }
 
 function listDomains
