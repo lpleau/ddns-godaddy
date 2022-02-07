@@ -17,7 +17,7 @@ sudo apt install jq -y
 
 #Create cron job to keep DDNS updated
 crontab -l > mycron
-echo "*/5 * * * * /usr/local/bin//ddns-godaddy/domainlist" >> mycron
+echo "*/5 * * * * /usr/local/bin/ddns-godaddy/domainlist" >> mycron
 crontab mycron
 rm mycron
 
