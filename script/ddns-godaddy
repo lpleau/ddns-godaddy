@@ -87,7 +87,7 @@ function confirm
 
 function runddns-godaddy
 {   clear
-        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] Configure new domain API (BETA) \n[3] View your current configured hosts \n[4] View your current domain APIs (BETA) \n[5] Uninstall"
+        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] Configure new domain API \n[3] View your current configured hosts \n[4] View your current domain APIs \n[5] Uninstall"
         read -n1 -p "1, 2, 3: " runCommand
 
         case $runCommand in
