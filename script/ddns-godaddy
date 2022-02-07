@@ -64,9 +64,29 @@ function listAPI
     tail --line=+2 /usr/local/bin/ddns-godaddy/.domainAPI
 }
 
+function uninstall
+{
+    clear
+    sudo rm -R /usr/local/bin/ddns-godaddy
+    crontab -l | grep -v '/usr/local/bin/ddns-godaddy/domainlist' | crontab -
+    sudo rm /usr/local/bin/ddns-godaddy
+    exit
+}
+
+function confirm
+{
+    clear
+    echo -e "Are you sure?\n"
+    read -n1 -p "[Y]es or [N]o: " answ
+
+    case $answ in
+        Y) clear && uninstall;;
+        N) clear && exit;;
+}
+
 function runddns-godaddy
 {   clear
-        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] Configure new domain API (BETA) \n[3] View your current configured hosts \n[4] View your current domain APIs (BETA) \n"
+        echo -e "Hello $(whoami)! Do you wish to: \n[1] Add a new Dyn-DNS configuration \n[2] Configure new domain API (BETA) \n[3] View your current configured hosts \n[4] View your current domain APIs (BETA) \n[5] Uninstall"
         read -n1 -p "1, 2, 3: " runCommand
 
         case $runCommand in
@@ -74,6 +94,7 @@ function runddns-godaddy
             2) clear && confAPI;;
             3) clear && listDomains;;
             4) clear && listAPI;;
+            5) clear && confirm;;
         esac
 }
 
