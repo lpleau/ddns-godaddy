@@ -1,25 +1,25 @@
 #!/bin/bash
 
 #Change permissions to execute
-sudo chmod 777 script/updateDNS
-sudo chmod 777 script/domainlist
-sudo chmod 777 script/ddns-godaddy
+sudo chmod 777 ddns-godaddy/script/updateDNS
+sudo chmod 777 ddns-godaddy/data/domainlist
 
 #Move all files to correct placement
-sudo mkdir /usr/local/bin/ddns
-sudo cp script/updateDNS /usr/local/bin/ddns/updatedns
-sudo cp script/domainlist /usr/local/bin/ddns/domainlist
-sudo cp script/ddns-godaddy /usr/local/bin/ddns-godaddy
-sudo cp script/.domainAPI /usr/local/bin/ddns/.domainAPI
+sudo mkdir /var/www/ddns-godaddy
+sudo cp -R ddns-godaddy /var/www/ddns-godaddy
 
 #Install dependencies
 sudo apt install jq -y
+sudo apt install curl -y
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
 
 #Create cron job to keep DDNS updated
 crontab -l > mycron
-echo "*/5 * * * * /usr/local/bin/ddns/domainlist" >> mycron
+echo "*/5 * * * * /var/www/ddns-godaddy/script/domainlist" >> mycron
 crontab mycron
 rm mycron
 
 clear
-echo -e "Thank you for installing and configuring ddns-GoDaddy! \nTo configure or view current config, type 'ddns-godaddy' in any terminal!"
+IP=`hostname -i`
+echo -e "Thank you for installing and configuring ddns-GoDaddy! \nTo configure or view current config, go to your browser and type http://${IP}:7314!"

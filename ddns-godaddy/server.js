@@ -40,7 +40,7 @@ function addHost(request, response) {
         return element.split(" ")[0];
     });
     var domainAPIindex = domList.indexOf(domain);
-    var newDom = "\n/usr/local/bin/ddns/updatedns " + host + " " + domAPIlist[domainAPIindex];
+    var newDom = "\n/var/www/ddns-godaddy/script/updatedns " + host + " " + domAPIlist[domainAPIindex];
     fs.appendFile(path.join(__dirname, 'data', 'domainlist'), newDom, (err) => {
         if (err) throw err;
         console.log('Write complete');
@@ -78,5 +78,8 @@ function allHosts(request, response) {
 app.get('/domains-api', listDomainsAPI);
 function listDomainsAPI(request, response) {
     var fileList = fs.readFileSync(path.join(__dirname, 'data', '.domainAPI'), 'utf8').split("\n").slice(1);
-    response.send(fileList);
+    let domList = fileList.map(function(element){
+        return element.split(" ");
+    });
+    response.send(domList);
 }
