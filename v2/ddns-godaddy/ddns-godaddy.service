@@ -1,0 +1,13 @@
+[Unit]
+Description=Service for DDNS-Godaddy
+
+[Service]
+ExecStart=/var/www/ddns-godaddy/server.js
+Restart=always
+User=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_END=production
+WorkingDirectory=/var/www/ddns-godaddy
+
+[Install]
+WantedBy=multi-user.target
