@@ -2,11 +2,3 @@
 
 #SCRIPTNAME DOMAIN HOST APIKEY APISECRET
 #./example.sh www example.com 283bab72X65fe3d3Af55B16d unDbSNyMU9
-/usr/local/bin/ddns/updatedns www wise.local d31f2d23 f23f23f23
-/usr/local/bin/ddns/updatedns plex dechiqueteurs.ca d2ndh dn238d9n9
-/usr/local/bin/ddns/updatedns KEMP Cloeblabla.com bcf2u378ic d23d23d23d
-/usr/local/bin/ddns/updatedns vpn1 pleaupereault.com d1crvv23r rv23r232
-/usr/local/bin/ddns/updatedns vpn2 pleaupereault.com d1crvv23r rv23r232
-/usr/local/bin/ddns/updatedns testing wise.local d31f2d23 f23f23f23
-/usr/local/bin/ddns/updatedns lucpleau wise.local d31f2d23 f23f23f23
-/usr/local/bin/ddns/updatedns vpn lpxactsolutions.com dn328fhdo2 nf02hfeionvow
