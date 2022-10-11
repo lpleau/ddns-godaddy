@@ -5,8 +5,7 @@ sudo chmod 777 ddns-godaddy/script/updateDNS
 sudo chmod 777 ddns-godaddy/data/domainlist
 
 #Move all files to correct placement
-sudo mkdir /var/www/ddns-godaddy
-sudo cp -R ddns-godaddy /var/www/
+sudo cp -R ddns-godaddy /var/www/ddns-godaddy
 sudo cp ddns-godaddy/ddns-godaddy.service /etc/systemd/system/ddns-godaddy.service
 
 #Install dependencies
