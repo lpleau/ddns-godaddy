@@ -17,7 +17,7 @@ sudo npm install -g nodemon
 
 #Create cron job to keep DDNS updated
 crontab -l > mycron
-echo "*/5 * * * * /var/www/ddns-godaddy/script/domainlist" >> mycron
+echo "*/5 * * * * /var/www/ddns-godaddy/data/domainlist" >> mycron
 crontab mycron
 rm mycron
 

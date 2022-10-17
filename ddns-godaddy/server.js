@@ -40,7 +40,7 @@ function addHost(request, response) {
         return element.split(" ")[0];
     });
     var domainAPIindex = domList.indexOf(domain);
-    var newDom = "\n/var/www/ddns-godaddy/script/updatedns " + host + " " + domAPIlist[domainAPIindex];
+    var newDom = "\n/var/www/ddns-godaddy/script/updateDNS " + host + " " + domAPIlist[domainAPIindex];
     fs.appendFile(path.join(__dirname, 'data', 'domainlist'), newDom, (err) => {
         if (err) throw err;
         console.log('Write complete');
